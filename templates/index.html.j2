@@ -1,0 +1,26 @@
+{% extends "base.html.j2" %}
+{% block body %}
+
+  <div class="row" id="follow">
+    <div class="col-12">
+      <h2 class="text-center">Color palettes for Firefly Zero</h2>
+      <p class="lead">
+        You can use any 16-color color palettes with Firefly Zero.
+        To make your life easier, we've generated code snippets
+        for different languages by Firefly Zero for top palettes from
+        <a href="https://lospec.com/palette-list">Lospec</a>.
+      </p>
+    </div>
+  </div>
+
+  <section class="row justify-content-center">
+    {% for palette in palettes %}
+    <div class="col col-12 col-sm-6 col-md-4 col-lg-2 mb-1">
+      <a href="{{ palette.slug }}" target="_blank" rel="me" class="btn btn-light" style="min-width: 100%">
+        {{ palette.title }}
+      </a>
+    </div>
+    {% endfor %}
+  </section>
+
+{% endblock %}
