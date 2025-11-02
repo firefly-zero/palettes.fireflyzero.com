@@ -1,0 +1,18 @@
+<div class="card h-100">
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="https://lospec.com/palette-list/{{ p.slug }}" target="_blank">
+        <b>{{ p.title }}</b>
+      </a>
+      {% if p.creator  %}
+        by <a href="https://lospec.com/{{ p.user.slug }}">{{ p.user.name }}</a>
+      {% endif %}
+    </h5>
+    <p>
+      {{ p.description | safe}}
+    </p>
+    <a href="{{ p.slug }}" class="btn btn-light">
+      get code
+    </a>
+  </div>
+</div>

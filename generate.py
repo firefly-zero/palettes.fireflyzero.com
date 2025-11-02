@@ -1,4 +1,5 @@
 from __future__ import annotations
+import json
 from pathlib import Path
 
 import requests
@@ -6,6 +7,8 @@ from jinja2 import Environment, FileSystemLoader
 from jinja_markdown2 import MarkdownExtension
 
 URL = 'https://lospec.com/palette-list/load?colorNumberFilterType=exact&colorNumber=16&page={page}&tag=&sortingType=downloads'
+ROOT = Path(__file__).parent
+
 
 def download()-> list[dict]:
     result = []
@@ -15,7 +18,16 @@ def download()-> list[dict]:
         result.extend(resp.json()["palettes"])
     return result
 
-palettes = download()
+
+def get_palettes()-> list[dict]:
+    path = ROOT / ".palettes.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    result = download()
+    path.write_text(json.dumps(result))
+    return result
+
+palettes = get_palettes()
 env = Environment(loader=FileSystemLoader('templates'))
 env.add_extension(MarkdownExtension)
 public_dir = Path('public')
