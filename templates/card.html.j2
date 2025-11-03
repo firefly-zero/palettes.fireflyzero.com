@@ -12,14 +12,11 @@
       {{ p.description | safe}}
     </p>
 
-    <p>
-      {% for i, c in enumerate(p.colors) %}
+    <div class="colors mb-4">
+      {% for c in p.colors %}
         <div class="color" style="background-color: #{{c}}"></div>
-        {% if i == 7 %}
-          <br/>
-        {% endif %}
       {% endfor %}
-    </p>
+    </div>
 
     <a href="{{ p.slug }}" class="btn btn-light">
       get code

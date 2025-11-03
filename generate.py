@@ -10,7 +10,7 @@ URL = 'https://lospec.com/palette-list/load?colorNumberFilterType=exact&colorNum
 ROOT = Path(__file__).parent
 
 
-def download()-> list[dict]:
+def download() -> list[dict]:
     result = []
     for page in range(3):
         resp = requests.get(URL.format(page=page))
@@ -19,7 +19,7 @@ def download()-> list[dict]:
     return result
 
 
-def get_palettes()-> list[dict]:
+def get_palettes() -> list[dict]:
     path = ROOT / ".palettes.json"
     if path.exists():
         return json.loads(path.read_text())
@@ -27,11 +27,12 @@ def get_palettes()-> list[dict]:
     path.write_text(json.dumps(result))
     return result
 
+
 palettes = get_palettes()
 env = Environment(loader=FileSystemLoader('templates'))
 env.add_extension(MarkdownExtension)
 public_dir = Path('public')
 public_dir.mkdir(exist_ok=True)
 template = env.get_template('index.html.j2')
-content = template.render(palettes=palettes, enumerate=enumerate)
+content = template.render(palettes=palettes)
 Path('public', 'index.html').write_text(content)

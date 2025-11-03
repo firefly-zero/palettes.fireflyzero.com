@@ -36,11 +36,17 @@
         --bs-btn-hover-color: #f4f4f4;
       }
 
-      .color {
-        width: 30px;
-        height: 20px;
+      .colors {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: 100%;
         border: #1a1c2c 1px solid;
-        display: inline-block;
+      }
+
+      .color {
+        flex: 0 1 auto;
+        min-width: 12.5%;
+        height: 20px;
       }
     </style>
   </head>
