@@ -89,8 +89,31 @@ void set_colors()
 {
     // https://lospec.com/palette-list/{{ p.slug }}
     {%- for c in colors %}
-    RGB color{{c.index}} = {.r = 0x{{c.r_hex}}, .g = 0x{{c.g_hex}}, .b = 0x{{c.b_hex}}};
+    RGB color{{c.index}} = {0x{{c.r_hex}}, 0x{{c.g_hex}}, 0x{{c.b_hex}}};
     set_color({{c.index}}, color{{c.index}});
+    {%- endfor %}
+}
+</pre>
+
+<h2>
+  ➕ C++
+  <button class="btn btn-light" type="button" data-clipboard-target="#code-cpp">
+    📋 copy
+  </button>
+</h2>
+<pre id="code-cpp">
+#include "./vendor/firefly/firefly.c"
+
+BOOT void boot()
+{
+    set_colors();
+}
+
+void set_colors()
+{
+    // https://lospec.com/palette-list/{{ p.slug }}
+    {%- for c in colors %}
+    set_color({{c.index}}, {0x{{c.r_hex}}, 0x{{c.g_hex}}, 0x{{c.b_hex}}});
     {%- endfor %}
 }
 </pre>
