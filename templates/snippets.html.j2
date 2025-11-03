@@ -50,6 +50,27 @@ func setColors() {
 }
 </pre>
 
+<h2>
+  ⚡️ Zig
+  <button class="btn btn-light" type="button" data-clipboard-target="#code-zig">
+    📋 copy
+  </button>
+</h2>
+<pre id="code-zig">
+const ff = @import("firefly");
+
+pub export fn update() void {
+    setColors()
+}
+
+fn setColors() void {
+    // https://lospec.com/palette-list/{{ p.slug }}
+    {%- for c in colors %}
+    ff.setColor(@enumFromInt({{c.index}}), ff.RGB{.r = 0x{{c.r_hex}}, .g = 0x{{c.g_hex}}, .b = 0x{{c.b_hex}}});
+    {%- endfor %}
+}
+</pre>
+
 <script src="https://clipboardjs.com/dist/clipboard.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
