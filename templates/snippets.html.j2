@@ -118,6 +118,30 @@ void set_colors()
 }
 </pre>
 
+<h2>
+  🐰 MoonBit
+  <button class="btn btn-light" type="button" data-clipboard-target="#code-moon">
+    📋 copy
+  </button>
+</h2>
+<pre id="code-moon">
+///|
+using @firefly {type Color, type RGB}
+
+///|
+pub fn boot() -> Unit {
+  set_colors()
+}
+
+///|
+fn set_colors() -> Unit {
+  // https://lospec.com/palette-list/{{ p.slug }}
+  {%- for c in colors %}
+  @firefly.set_color(Color::from_int({{c.index}}), RGB::new(0x{{c.r_hex}}, 0x{{c.g_hex}}, 0x{{c.b_hex}}));
+  {%- endfor %}
+}
+</pre>
+
 <script src="https://clipboardjs.com/dist/clipboard.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
