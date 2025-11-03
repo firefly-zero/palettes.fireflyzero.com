@@ -1,6 +1,30 @@
 
 <h2>
-  Go
+  🦀 Rust
+  <button class="btn btn-light" type="button" data-clipboard-target="#code-rust">
+    📋 copy
+  </button>
+</h2>
+<pre id="code-rust">
+#![no_std]
+#![no_main]
+use firefly_rust::*;
+
+#[unsafe(no_mangle)]
+extern "C" fn boot() {
+    set_colors();
+}
+
+fn set_colors() {
+    // https://lospec.com/palette-list/{{ p.slug }}
+    {%- for c in colors %}
+    set_color(Color::from({{c.index}}), RGB::new(0x{{c.r_hex}}, 0x{{c.g_hex}}, 0x{{c.b_hex}}));
+    {%- endfor %}
+}
+</pre>
+
+<h2>
+  🏃 Go
   <button class="btn btn-light" type="button" data-clipboard-target="#code-go">
     📋 copy
   </button>
@@ -20,9 +44,9 @@ func boot() {
 
 func setColors() {
     // https://lospec.com/palette-list/{{ p.slug }}
-  {%- for c in colors %}
+    {%- for c in colors %}
     firefly.SetColor({{c.index}}, firefly.RGB{R: 0x{{c.r_hex}}, G: 0x{{c.g_hex}}, B: 0x{{c.b_hex}}})
-  {%- endfor %}
+    {%- endfor %}
 }
 </pre>
 
