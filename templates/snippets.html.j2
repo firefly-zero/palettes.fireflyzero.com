@@ -1,0 +1,22 @@
+
+<h2>Go</h2>
+<pre>
+package main
+
+import "github.com/firefly-zero/firefly-go/firefly"
+
+func init() {
+    firefly.Boot = boot
+}
+
+func boot() {
+    setColors()
+}
+
+func setColors() {
+    // https://lospec.com/palette-list/{{ p.slug }}
+  {%- for c in colors %}
+    firefly.SetColor({{c.index}}, firefly.RGB{R: 0x{{c.r_hex}}, G: 0x{{c.g_hex}}, B: 0x{{c.b_hex}}})
+  {%- endfor %}
+}
+</pre>

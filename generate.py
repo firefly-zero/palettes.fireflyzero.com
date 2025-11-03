@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass
 import json
 from pathlib import Path
 
@@ -38,8 +39,28 @@ template = env.get_template('index.html.j2')
 content = template.render(palettes=palettes)
 Path('public', 'index.html').write_text(content)
 
+
+@dataclass
+class Color:
+    index: int
+    rgb: str
+
+    @property
+    def r_hex(self):
+        return self.rgb[:2]
+
+    @property
+    def g_hex(self):
+        return self.rgb[2:4]
+
+    @property
+    def b_hex(self):
+        return self.rgb[4:]
+
+
 template = env.get_template('palette.html.j2')
 for p in palettes:
     slug = p['slug']
-    content = template.render(p=p)
+    colors = [Color(i+1, c) for i, c in enumerate(p['colors'])]
+    content = template.render(p=p, colors=colors)
     Path('public', f'{slug}.html').write_text(content)
