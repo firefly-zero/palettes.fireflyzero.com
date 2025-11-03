@@ -1,7 +1,7 @@
 {% extends "base.html.j2" %}
 {% block body %}
 
-  <div class="row" id="follow">
+  <div class="row">
     <div class="col-12">
       <h2 class="text-center">Color palettes for Firefly Zero</h2>
       <p class="lead">
@@ -16,9 +16,11 @@
 
   <section class="row justify-content-center">
     {% for p in palettes %}
-      <div class="col col-md-4 g-4">
-        {% include "card.html.j2" %}
-      </div>
+      <div class="col col-md-4 g-4" id="{{ p.slug }}">
+        {% with show_button=true %}
+          {% include "card.html.j2" %}
+        {% endwith %}
+     </div>
     {% endfor %}
   </section>
 

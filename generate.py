@@ -33,6 +33,13 @@ env = Environment(loader=FileSystemLoader('templates'))
 env.add_extension(MarkdownExtension)
 public_dir = Path('public')
 public_dir.mkdir(exist_ok=True)
+
 template = env.get_template('index.html.j2')
 content = template.render(palettes=palettes)
 Path('public', 'index.html').write_text(content)
+
+template = env.get_template('palette.html.j2')
+for p in palettes:
+    slug = p['slug']
+    content = template.render(p=p)
+    Path('public', f'{slug}.html').write_text(content)

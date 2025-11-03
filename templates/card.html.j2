@@ -18,8 +18,10 @@
       {% endfor %}
     </div>
 
-    <a href="{{ p.slug }}" class="btn btn-light">
-      get code
-    </a>
+    {% if show_button %}
+      <a href="{{ p.slug }}.html" class="btn btn-light">
+        get code
+      </a>
+    {% endif %}
   </div>
 </div>

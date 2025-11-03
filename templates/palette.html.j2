@@ -1,0 +1,21 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ p.title }} palette for Firefly Zero{% endblock %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center">
+        <a href="/">Palettes</a> / {{ p.title }}
+      </h2>
+    </div>
+  </div>
+
+  <section class="row justify-content-center">
+    <div class="col">
+      {% with show_button=false %}
+        {% include "card.html.j2" %}
+      {% endwith %}
+    </div>
+  </section>
+
+{% endblock %}
