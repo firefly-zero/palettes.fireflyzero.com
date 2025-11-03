@@ -1,6 +1,11 @@
 
-<h2>Go</h2>
-<pre>
+<h2>
+  Go
+  <button class="btn btn-light" type="button" data-clipboard-target="#code-go">
+    📋 copy
+  </button>
+</h2>
+<pre id="code-go">
 package main
 
 import "github.com/firefly-zero/firefly-go/firefly"
@@ -20,3 +25,19 @@ func setColors() {
   {%- endfor %}
 }
 </pre>
+
+<script src="https://clipboardjs.com/dist/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<script>
+  var clipboard = new ClipboardJS('.btn');
+  clipboard.on('success', function(e) {
+      Swal.fire({
+        title: 'Copied!',
+        text: 'Now you can paste the snippet into your project',
+        type: 'success',
+        confirmButtonText: 'got it!'
+      })
+    e.clearSelection();
+  });
+</script>
