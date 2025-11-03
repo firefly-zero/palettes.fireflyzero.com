@@ -13,7 +13,7 @@ ROOT = Path(__file__).parent
 
 def download() -> list[dict]:
     result = []
-    for page in range(3):
+    for page in range(5):
         resp = requests.get(URL.format(page=page))
         resp.raise_for_status()
         result.extend(resp.json()["palettes"])
