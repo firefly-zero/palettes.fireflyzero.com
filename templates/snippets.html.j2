@@ -6,7 +6,7 @@
   </button>
 </h2>
 <pre id="code-toml">
-// https://lospec.com/palette-list/{{ p.slug }}
+# https://lospec.com/palette-list/{{ p.slug }}
 [palettes.{{ p.slug}}]
 {%- for c in colors %}
 {{c.index}} = 0x{{c.r_hex}}{{c.g_hex}}{{c.b_hex}}
